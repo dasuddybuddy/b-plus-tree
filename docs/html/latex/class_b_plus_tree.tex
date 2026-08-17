@@ -1,0 +1,111 @@
+\doxysection{BPlus\+Tree\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_b_plus_tree}{}\label{class_b_plus_tree}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+
+
+{\ttfamily \+\#include $<$BPlus\+Tree.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_b_plus_tree_a9b73db0fb8d4de808f9ff16ef1a3d9eb}\label{class_b_plus_tree_a9b73db0fb8d4de808f9ff16ef1a3d9eb} 
+{\bfseries BPlus\+Tree} (int degree)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_a2fd5163751b941ec6c49da287782c3ab}{insert}} (T key)
+\item 
+\Hypertarget{class_b_plus_tree_a2d1f6677995a17c011f24dd92315a8b7}\label{class_b_plus_tree_a2d1f6677995a17c011f24dd92315a8b7} 
+bool {\bfseries search} (T key)
+\item 
+\Hypertarget{class_b_plus_tree_a47f3ce27b5d200f0b7f0457c717c91a5}\label{class_b_plus_tree_a47f3ce27b5d200f0b7f0457c717c91a5} 
+void {\bfseries remove} (T key)
+\item 
+\Hypertarget{class_b_plus_tree_aaf427e3cbc519d5b142a6dcd91b4bdc1}\label{class_b_plus_tree_aaf427e3cbc519d5b142a6dcd91b4bdc1} 
+vector$<$ T $>$ {\bfseries range\+Query} (T lower, T upper)
+\item 
+\Hypertarget{class_b_plus_tree_ac5c731876f63252d715e453bb6d2da3a}\label{class_b_plus_tree_ac5c731876f63252d715e453bb6d2da3a} 
+void {\bfseries print\+Tree} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec}{split\+Child}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}parent, int index, \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\item 
+\Hypertarget{class_b_plus_tree_ae90221cfa498f811580bd66d5d3665e1}\label{class_b_plus_tree_ae90221cfa498f811580bd66d5d3665e1} 
+void {\bfseries insert\+Non\+Full} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, T key)
+\item 
+\Hypertarget{class_b_plus_tree_a91ea8fe8c1bf686f2a3357795d7dc86a}\label{class_b_plus_tree_a91ea8fe8c1bf686f2a3357795d7dc86a} 
+void {\bfseries remove} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, T key)
+\item 
+\Hypertarget{class_b_plus_tree_af68dfd7e82f610f40f5131b68e13ed52}\label{class_b_plus_tree_af68dfd7e82f610f40f5131b68e13ed52} 
+void {\bfseries borrow\+From\+Prev} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, int index)
+\item 
+\Hypertarget{class_b_plus_tree_a3c5e5619292657bf03ab80918bbe71f0}\label{class_b_plus_tree_a3c5e5619292657bf03ab80918bbe71f0} 
+void {\bfseries borrow\+From\+Next} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, int index)
+\item 
+\Hypertarget{class_b_plus_tree_a90df0e59462f0f7f4ea83a89750f0592}\label{class_b_plus_tree_a90df0e59462f0f7f4ea83a89750f0592} 
+void {\bfseries merge} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, int index)
+\item 
+\Hypertarget{class_b_plus_tree_a13683de06af7b747bf578c46be7c4fab}\label{class_b_plus_tree_a13683de06af7b747bf578c46be7c4fab} 
+void {\bfseries print\+Tree} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, int level)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_b_plus_tree_ab3f109f41271600b5e015b212fbc536f}\label{class_b_plus_tree_ab3f109f41271600b5e015b212fbc536f} 
+\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*} {\bfseries root}
+\item 
+\Hypertarget{class_b_plus_tree_a4e35a0025a223dcca6b39287bb47f9d6}\label{class_b_plus_tree_a4e35a0025a223dcca6b39287bb47f9d6} 
+int {\bfseries min\+Degree}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class BPlus\+Tree$<$ T $>$}
+B+ Tree Class 
+
+\label{class_b_plus_tree_doc-func-members}
+\Hypertarget{class_b_plus_tree_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_plus_tree_a2fd5163751b941ec6c49da287782c3ab}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!insert@{insert}}
+\index{insert@{insert}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a2fd5163751b941ec6c49da287782c3ab} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+insert (\begin{DoxyParamCaption}\item[{T}]{key}{}\end{DoxyParamCaption})}
+
+Generic insert function for B plus tree. Checks if a root exists if not creates one. If size of root keys violates limit factor 2 \texorpdfstring{$\ast$}{*} min\+Degree -\/ 1 we create a new root and call the split child helper function to deal with overflow. Call insert\+Non\+Full helper if no overflow.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & the value being inserted \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!splitChild@{splitChild}}
+\index{splitChild@{splitChild}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{splitChild()}{splitChild()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+split\+Child (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{int}]{index}{, }\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{child}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Helper function for insert to deal with overflow. This function will promote leaf data to parent while keeping data in leaves.
+
+Create an empty sibling and insert it into the parents children vector. Insert the middle child of the full vector into parent array. Assign second half of array to sibling and first half to child. If the child is not a leaf reassign child pointers, else link the child and sibling together since they are leaves.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & parent of child node being split \\
+\hline
+{\em index} & index of which data in parent \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+BPlus\+Tree.\+h\item 
+implementation.\+tpp\end{DoxyCompactItemize}

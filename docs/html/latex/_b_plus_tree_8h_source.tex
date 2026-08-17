@@ -1,0 +1,62 @@
+\doxysection{BPlus\+Tree.\+h}
+\hypertarget{_b_plus_tree_8h_source}{}\label{_b_plus_tree_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BPLUSTREE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BPLUSTREE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{class\ }BPlusTree\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node_a6871335a71be80df78230ce2615a25b1}{Node}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isLeaf;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ std::vector<T>\ keys;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ std::vector<Node*>\ children;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node_a6871335a71be80df78230ce2615a25b1}{Node}}*\ next;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node_a6871335a71be80df78230ce2615a25b1}{Node}}(\textcolor{keywordtype}{bool}\ leaf\ =\ \textcolor{keyword}{false})\ :\ isLeaf(leaf),\ next(nullptr)\ \{\}}
+\DoxyCodeLine{00026\ \ \ \ \ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ Node*\ root;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Minimum\ degree\ (defines\ the\ range\ for\ the\ number\ of}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ keys)}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ minDegree;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ split\ a\ child\ node}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec}{splitChild}}(Node*\ parent,\ \textcolor{keywordtype}{int}\ index,\ Node*\ child);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ insert\ a\ key\ in\ a\ non-\/full\ node}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ insertNonFull(Node*\ node,\ T\ key);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ remove\ a\ key\ from\ a\ node}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ remove(Node*\ node,\ T\ key);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ borrow\ a\ key\ from\ the\ previous\ sibling}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ borrowFromPrev(Node*\ node,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ borrow\ a\ key\ from\ the\ next\ sibling}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ borrowFromNext(Node*\ node,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ merge\ two\ nodes}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ merge(Node*\ node,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ print\ the\ tree}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ printTree(Node*\ node,\ \textcolor{keywordtype}{int}\ level);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree}{BPlusTree}}(\textcolor{keywordtype}{int}\ degree):\ root(nullptr),\ t(degree)\{\}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a2fd5163751b941ec6c49da287782c3ab}{insert}}(T\ key);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ search(T\ key);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ remove(T\ key);}
+\DoxyCodeLine{00060\ \ \ \ \ vector<T>\ rangeQuery(T\ lower,\ T\ upper);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ printTree();}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ "{}implementation.tpp"{}}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif\ BPLUSTREE\_H}}
+
+\end{DoxyCode}
