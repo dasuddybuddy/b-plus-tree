@@ -52,7 +52,7 @@ private:
     void printTree(Node* node, int level);
 
 public:
-    BPlusTree(int degree): root(nullptr), t(degree){}
+    BPlusTree(int degree): root(nullptr), minDegree(degree){}
 
     void insert(T key);
     bool search(T key);
@@ -61,6 +61,8 @@ public:
     void printTree();
 };
 
-#include "implementation.tpp"
+#include "../implementation/insertion.tpp"
+#include "../implementation/query.tpp"
 
-#endif BPLUSTREE_H
+
+#endif
