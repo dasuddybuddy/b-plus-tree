@@ -15,33 +15,51 @@
  */
 template <typename T>
 void BPlusTree<T>::splitChild(Node* parent, int index, Node* child) {
-    Node* sibling = new Node(child->isLeaf);
+    Node* sibling {new Node(child->isLeaf)};
     parent->children.insert(parent->children.begin() + index + 1, sibling);
-    parent->keys.insert(parent->keys.begin() + index, child->keys[minDegree - 1]);
-    sibling->keys.assign(child->keys.begin() + minDegree, child->keys.end());
-    child->keys.resize(minDegree - 1);
-    if (!child->isLeaf) {
-        sibling->children.assign(child->children.begin() + minDegree + 1, child->children.end());
+
+    T sepKey = child->keys[minDegree - 1];
+
+    if (child->isLeaf) {
+        sibling->keys.assign(child->keys.begin() + minDegree - 1, child->keys.end());
+        child->keys.resize(minDegree - 1);
+        sibling->next = child->next;
+        child->next = sibling;
+    } else {
+        sibling->keys.assign(child->keys.begin() + minDegree, child->keys.end());
+        child->keys.resize(minDegree - 1);
+        sibling->children.assign(child->children.begin() + minDegree, child->children.end());
         child->children.resize(minDegree);
     }
-    else {
-        child->next = sibling;
-        sibling->next = child;
-    }
+
+    parent->keys.insert(parent->keys.begin() + index, sepKey);
 }
 
+/**
+ * Adds data to a nonfull leaf.
+ * 
+ * Recursively iterates through tree splits
+ * any nodes that are full once leaf is reached
+ * adds key to node.
+ * 
+ * @param node current node function is at
+ * @param key data to be added
+ */
 template <typename T>
 void BPlusTree<T>::insertNonFull(Node* node, T key) {
     if (node->isLeaf) {
         node->keys.insert(std::upper_bound(node->keys.begin(), node->keys.end(), key), key);
     } else {
-        int idx = 0;
-        while (idx < node->keys.size() && key > node->keys[idx]) {
+        int idx {0};
+        while (idx < node->keys.size() && key >= node->keys[idx]) {
             idx++;
         }
-        idx--;
-        if (node->children.size() == 2 * minDegree - 1) {
+
+        if (node->children[idx]->keys.size() == 2 * minDegree - 1) {
             splitChild(node, idx, node->children[idx]);
+            if (key >= node->keys[idx]) {
+                idx++;
+            }
         }
         insertNonFull(node->children[idx], key);
     }
@@ -60,12 +78,12 @@ void BPlusTree<T>::insertNonFull(Node* node, T key) {
 template <typename T> 
 void BPlusTree<T>::insert(T key) {
     if (root == nullptr) {
-        Node* root = new Node(true);
+        root = new Node(true);
         root->keys.push_back(key);
         return;
     }
     if (root->keys.size() == 2*minDegree - 1) {
-        Node* newRoot = new Node();
+        Node* newRoot {new Node()};
         newRoot->children.push_back(root);
         splitChild(newRoot, 0, root);
         root = newRoot;

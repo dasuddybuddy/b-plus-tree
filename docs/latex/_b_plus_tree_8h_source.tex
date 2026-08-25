@@ -1,0 +1,86 @@
+\doxysection{BPlus\+Tree.\+h}
+\hypertarget{_b_plus_tree_8h_source}{}\label{_b_plus_tree_8h_source}\index{include/BPlusTree.h@{include/BPlusTree.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BPLUSTREE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BPLUSTREE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{class\ }BPlusTree\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node_a6871335a71be80df78230ce2615a25b1}{Node}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isLeaf;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ std::vector<T>\ keys;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ std::vector<Node*>\ children;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node_a6871335a71be80df78230ce2615a25b1}{Node}}*\ next;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node_a6871335a71be80df78230ce2615a25b1}{Node}}(\textcolor{keywordtype}{bool}\ leaf\ =\ \textcolor{keyword}{false})\ :\ isLeaf(leaf),\ next(nullptr)\ \{\}}
+\DoxyCodeLine{00027\ \ \ \ \ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ Node*\ root;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Minimum\ degree\ (defines\ the\ range\ for\ the\ number\ of}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ keys)}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{int}\ minDegree;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ split\ a\ child\ node}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec}{splitChild}}(Node*\ parent,\ \textcolor{keywordtype}{int}\ index,\ Node*\ child);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ insert\ a\ key\ in\ a\ non-\/full\ node}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_ae90221cfa498f811580bd66d5d3665e1}{insertNonFull}}(Node*\ node,\ T\ key);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ remove\ a\ key\ from\ a\ node}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a9e9b6dbf1d7d947dfb7360670d3c7d2e}{remove}}(Node*\ node,\ Node*\ parent,\ T\ key,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ borrow\ a\ key\ from\ the\ previous\ sibling}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a5ba990c4f4345cba6440448f8772fa80}{borrowFromPrev}}(Node*\ node,\ Node*\ parent,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ borrow\ a\ key\ from\ the\ next\ sibling}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a40b558d42c2d6e1d503d47a1450f647c}{borrowFromNext}}(Node*\ node,\ Node*\ parent,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ merge\ two\ nodes}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_ac01ba405435a00ac535fe542b859a76b}{merge}}(Node*\ node,\ Node*\ parent,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ borrow\ a\ key\ from\ previous\ sibling\ (internal\ nodes)}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a7fd5d8ab340b3418ea0b77cc8cb66847}{borrowInternalFromPrev}}(Node*\ node,\ Node*\ parent,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ borrow\ a\ key\ from\ next\ sibling\ (internal\ nodes)}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_ac71ae4bb407e13a6d726f5a73ec6aa23}{borrowInternalFromNext}}(Node*\ node,\ Node*\ parent,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ merge\ two\ internal\ nodes}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a4fcd3aa6d749f8f8ecae0d7a288502cc}{mergeInternal}}(Node*\ node,\ Node*\ parent,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ print\ the\ tree}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ printTree(Node*\ node,\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keywordtype}{bool}\ isLast,\ std::string\ prefix);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00065\ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree}{BPlusTree}}(\textcolor{keywordtype}{int}\ degree):\ root(nullptr),\ minDegree(degree)\{\}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a2fd5163751b941ec6c49da287782c3ab}{insert}}(T\ key);}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_b_plus_tree_a2d1f6677995a17c011f24dd92315a8b7}{search}}(T\ key);}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a9e9b6dbf1d7d947dfb7360670d3c7d2e}{remove}}(T\ key);}
+\DoxyCodeLine{00070\ \ \ \ \ std::vector<T>\ \doxymbox{\hyperlink{class_b_plus_tree_a015a6291145343e2255211b2f0b29bc1}{rangeQuery}}(T\ lower,\ T\ upper);}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ printTree();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ getKeySize()\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ root-\/>keys.size();}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ getChildrenSize()\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ root-\/>children.size();}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ getChildKeySize(\textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ root-\/>children[index]-\/>keys.size();}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#include\ "{}../implementation/insertion.tpp"{}}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#include\ "{}../implementation/query.tpp"{}}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#include\ "{}../implementation/remove.tpp"{}}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#include\ "{}../implementation/print.tpp"{}}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

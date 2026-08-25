@@ -1,0 +1,349 @@
+\doxysection{BPlus\+Tree\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_b_plus_tree}{}\label{class_b_plus_tree}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+
+
+{\ttfamily \+\#include $<$BPlus\+Tree.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_b_plus_tree_a9b73db0fb8d4de808f9ff16ef1a3d9eb}\label{class_b_plus_tree_a9b73db0fb8d4de808f9ff16ef1a3d9eb} 
+{\bfseries BPlus\+Tree} (int degree)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_a2fd5163751b941ec6c49da287782c3ab}{insert}} (T key)
+\item 
+bool \doxymbox{\hyperlink{class_b_plus_tree_a2d1f6677995a17c011f24dd92315a8b7}{search}} (T key)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_a47f3ce27b5d200f0b7f0457c717c91a5}{remove}} (T key)
+\item 
+std::\+vector$<$ T $>$ \doxymbox{\hyperlink{class_b_plus_tree_a015a6291145343e2255211b2f0b29bc1}{range\+Query}} (T lower, T upper)
+\item 
+\Hypertarget{class_b_plus_tree_ac5c731876f63252d715e453bb6d2da3a}\label{class_b_plus_tree_ac5c731876f63252d715e453bb6d2da3a} 
+void {\bfseries print\+Tree} ()
+\item 
+\Hypertarget{class_b_plus_tree_abafdbbb561907a71d8ebca32e3f22ea9}\label{class_b_plus_tree_abafdbbb561907a71d8ebca32e3f22ea9} 
+size\+\_\+t {\bfseries get\+Key\+Size} ()
+\item 
+\Hypertarget{class_b_plus_tree_ac8ec8660c0f72a4f34862b763e9423dd}\label{class_b_plus_tree_ac8ec8660c0f72a4f34862b763e9423dd} 
+size\+\_\+t {\bfseries get\+Children\+Size} ()
+\item 
+\Hypertarget{class_b_plus_tree_a96a974a436659d4ba6a9ea8ad3376dab}\label{class_b_plus_tree_a96a974a436659d4ba6a9ea8ad3376dab} 
+size\+\_\+t {\bfseries get\+Child\+Key\+Size} (int index)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec}{split\+Child}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}parent, int index, \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_ae90221cfa498f811580bd66d5d3665e1}{insert\+Non\+Full}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, T key)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_a9e9b6dbf1d7d947dfb7360670d3c7d2e}{remove}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}parent, T key, int index)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_a5ba990c4f4345cba6440448f8772fa80}{borrow\+From\+Prev}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}parent, int index)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_a40b558d42c2d6e1d503d47a1450f647c}{borrow\+From\+Next}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}parent, int index)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_ac01ba405435a00ac535fe542b859a76b}{merge}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}parent, int index)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_a7fd5d8ab340b3418ea0b77cc8cb66847}{borrow\+Internal\+From\+Prev}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}parent, int index)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_ac71ae4bb407e13a6d726f5a73ec6aa23}{borrow\+Internal\+From\+Next}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}parent, int index)
+\item 
+void \doxymbox{\hyperlink{class_b_plus_tree_a4fcd3aa6d749f8f8ecae0d7a288502cc}{merge\+Internal}} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}parent, int index)
+\item 
+\Hypertarget{class_b_plus_tree_a68a337514f82d695074788396dcd338a}\label{class_b_plus_tree_a68a337514f82d695074788396dcd338a} 
+void {\bfseries print\+Tree} (\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}node, int level, bool is\+Last, std::\+string prefix)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_b_plus_tree_ab3f109f41271600b5e015b212fbc536f}\label{class_b_plus_tree_ab3f109f41271600b5e015b212fbc536f} 
+\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*} {\bfseries root}
+\item 
+\Hypertarget{class_b_plus_tree_a4e35a0025a223dcca6b39287bb47f9d6}\label{class_b_plus_tree_a4e35a0025a223dcca6b39287bb47f9d6} 
+int {\bfseries min\+Degree}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class BPlus\+Tree$<$ T $>$}
+B+ Tree Class 
+
+\label{class_b_plus_tree_doc-func-members}
+\Hypertarget{class_b_plus_tree_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_b_plus_tree_a40b558d42c2d6e1d503d47a1450f647c}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!borrowFromNext@{borrowFromNext}}
+\index{borrowFromNext@{borrowFromNext}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{borrowFromNext()}{borrowFromNext()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a40b558d42c2d6e1d503d47a1450f647c} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+borrow\+From\+Next (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Borrow right sibling data for given leaf node.
+
+We look at right sibling vector to extract the front data from it and add it to given leaf node. We erase it and update the parent data with new front data of right sibling.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node where removed data was \\
+\hline
+{\em parent} & parent of node \\
+\hline
+{\em index} & index where node is located \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_a5ba990c4f4345cba6440448f8772fa80}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!borrowFromPrev@{borrowFromPrev}}
+\index{borrowFromPrev@{borrowFromPrev}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{borrowFromPrev()}{borrowFromPrev()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a5ba990c4f4345cba6440448f8772fa80} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+borrow\+From\+Prev (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Borrow left sibling data for given leaf node.
+
+We look at the back of the children vector in the left sibling and add it to the vector node was in. We then updata the parent using that data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node where removed data was \\
+\hline
+{\em parent} & parent of node \\
+\hline
+{\em index} & index where node is located \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_ac71ae4bb407e13a6d726f5a73ec6aa23}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!borrowInternalFromNext@{borrowInternalFromNext}}
+\index{borrowInternalFromNext@{borrowInternalFromNext}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{borrowInternalFromNext()}{borrowInternalFromNext()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_ac71ae4bb407e13a6d726f5a73ec6aa23} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+borrow\+Internal\+From\+Next (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Borrow right sibling data for internal nodes.
+
+We insert the parent data into given node and take the parents left child node.
+
+We then take the smallest child in the right sibling node to update parent and remove that child afterwards.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node where removed data was \\
+\hline
+{\em parent} & parent of node \\
+\hline
+{\em index} & index where node is located \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_a7fd5d8ab340b3418ea0b77cc8cb66847}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!borrowInternalFromPrev@{borrowInternalFromPrev}}
+\index{borrowInternalFromPrev@{borrowInternalFromPrev}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{borrowInternalFromPrev()}{borrowInternalFromPrev()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a7fd5d8ab340b3418ea0b77cc8cb66847} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+borrow\+Internal\+From\+Prev (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Borrow left sibling data for internal nodes.
+
+We insert the parent data into given node and take the parents right child node.
+
+We then take the biggest child in the left sibling node to update parent and remove that child afterwards.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node where removed data was \\
+\hline
+{\em parent} & parent of node \\
+\hline
+{\em index} & index where node is located \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_a2fd5163751b941ec6c49da287782c3ab}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!insert@{insert}}
+\index{insert@{insert}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a2fd5163751b941ec6c49da287782c3ab} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+insert (\begin{DoxyParamCaption}\item[{T}]{key}{}\end{DoxyParamCaption})}
+
+Generic insert function for B plus tree. Checks if a root exists if not creates one. If size of root keys violates limit factor 2 \texorpdfstring{$\ast$}{*} min\+Degree -\/ 1 we create a new root and call the split child helper function to deal with overflow. Call insert\+Non\+Full helper if no overflow.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & the value being inserted \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_ae90221cfa498f811580bd66d5d3665e1}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!insertNonFull@{insertNonFull}}
+\index{insertNonFull@{insertNonFull}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{insertNonFull()}{insertNonFull()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_ae90221cfa498f811580bd66d5d3665e1} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+insert\+Non\+Full (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{T}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Adds data to a nonfull leaf.
+
+Recursively iterates through tree splits any nodes that are full once leaf is reached adds key to node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & current node function is at \\
+\hline
+{\em key} & data to be added \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_ac01ba405435a00ac535fe542b859a76b}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!merge@{merge}}
+\index{merge@{merge}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_ac01ba405435a00ac535fe542b859a76b} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+merge (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Merge leaf data with right sibling if available. If not merge with left.
+
+We take data from sibling and input it into leaf node then we reassign pointers and delete the empty node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node where removed data was \\
+\hline
+{\em parent} & parent of node \\
+\hline
+{\em index} & index where node is located \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_a4fcd3aa6d749f8f8ecae0d7a288502cc}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!mergeInternal@{mergeInternal}}
+\index{mergeInternal@{mergeInternal}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{mergeInternal()}{mergeInternal()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a4fcd3aa6d749f8f8ecae0d7a288502cc} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+merge\+Internal (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Merge function for internal nodes.
+
+We check right then left for an available sibling merging data. We merge the siblings and their child pointers then bringing down the parent into the node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node where removed data was \\
+\hline
+{\em parent} & parent of node \\
+\hline
+{\em index} & index where node is located \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_a015a6291145343e2255211b2f0b29bc1}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!rangeQuery@{rangeQuery}}
+\index{rangeQuery@{rangeQuery}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{rangeQuery()}{rangeQuery()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a015a6291145343e2255211b2f0b29bc1} 
+template$<$typename T$>$ \\
+std::\+vector$<$ T $>$ \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+range\+Query (\begin{DoxyParamCaption}\item[{T}]{lower}{, }\item[{T}]{upper}{}\end{DoxyParamCaption})}
+
+Returns elements within a range.
+
+We traverse the tree then iterate through the leaves of the tree until we find the first occurence of a child that is greater than or equal to the lower bound of the query. We traverse leaves until upper bound is violated
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower} & lower bound of query \\
+\hline
+{\em upper} & upper bound of query \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of elements queried within range 
+\end{DoxyReturn}
+\Hypertarget{class_b_plus_tree_a9e9b6dbf1d7d947dfb7360670d3c7d2e}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!remove@{remove}}
+\index{remove@{remove}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a9e9b6dbf1d7d947dfb7360670d3c7d2e} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+remove (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{T}]{key}{, }\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Determines how to remove data from leaves. Does not focus on removing anywhere else unless needed.
+
+We first traverse the tree recursively until we reach a leaf node. If the target key is in leaves erase it and update parent data.
+
+If the node has less children then min\+Degree -\/ 1 we check if we can borrow from sibling data if not we merge.
+
+Once leaf data is fixed if underflow occurs we propagate to the internal nodes (we check this by checking if their children is less then mindegree)
+
+To deal with underflow of internal nodes we check if parents siblings have a child they can give or else merge children and parent data.
+
+This cycle will occur within internal nodes until a merge does not occur.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & the current node \\
+\hline
+{\em parent} & the parent of the current node \\
+\hline
+{\em key} & data to be removed \\
+\hline
+{\em index} & used for traversal to find target data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_a47f3ce27b5d200f0b7f0457c717c91a5}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!remove@{remove}}
+\index{remove@{remove}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a47f3ce27b5d200f0b7f0457c717c91a5} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+remove (\begin{DoxyParamCaption}\item[{T}]{key}{}\end{DoxyParamCaption})}
+
+Caller function for acutal remove function.
+
+Removes root if it is null calls 2-\/arg remove function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & data to remove \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_b_plus_tree_a2d1f6677995a17c011f24dd92315a8b7}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!search@{search}}
+\index{search@{search}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_a2d1f6677995a17c011f24dd92315a8b7} 
+template$<$typename T$>$ \\
+bool \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+search (\begin{DoxyParamCaption}\item[{T}]{key}{}\end{DoxyParamCaption})}
+
+Search for a value in tree.
+
+This method will search assuming all data is stored at the leaves. It creates a pointer towards the root and iterates through tree until it reaches leaf node. Then it iterates through leaf until value is found if not return false.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & value being searched for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if value is in tree 
+\end{DoxyReturn}
+\Hypertarget{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec}\index{BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}!splitChild@{splitChild}}
+\index{splitChild@{splitChild}!BPlusTree$<$ T $>$@{BPlusTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{splitChild()}{splitChild()}}
+{\footnotesize\ttfamily \label{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec} 
+template$<$typename T$>$ \\
+void \doxymbox{\hyperlink{class_b_plus_tree}{BPlus\+Tree}}$<$ T $>$::\+split\+Child (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{int}]{index}{, }\item[{\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*}}]{child}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Helper function for insert to deal with overflow. This function will promote leaf data to parent while keeping data in leaves.
+
+Create an empty sibling and insert it into the parents children vector. Insert the middle child of the full vector into parent array. Assign second half of array to sibling and first half to child. If the child is not a leaf reassign child pointers, else link the child and sibling together since they are leaves.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & parent of child node being split \\
+\hline
+{\em index} & index of which data in parent \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+include/BPlus\+Tree.\+h\item 
+implementation/insertion.\+tpp\item 
+implementation/print.\+tpp\item 
+implementation/query.\+tpp\item 
+implementation/remove.\+tpp\end{DoxyCompactItemize}

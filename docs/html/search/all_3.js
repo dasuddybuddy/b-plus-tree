@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['splitchild_0',['splitChild',['../class_b_plus_tree.html#ac693ae459379f293a4b5dd1bbb921fec',1,'BPlusTree']]]
+  ['node_0',['Node',['../struct_b_plus_tree_1_1_node.html',1,'BPlusTree&lt; T &gt;::Node'],['../struct_b_plus_tree_1_1_node.html#a6871335a71be80df78230ce2615a25b1',1,'BPlusTree::Node::Node()']]]
 ];

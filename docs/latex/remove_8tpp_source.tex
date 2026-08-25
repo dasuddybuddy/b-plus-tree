@@ -1,0 +1,205 @@
+\doxysection{remove.\+tpp}
+\hypertarget{remove_8tpp_source}{}\label{remove_8tpp_source}\index{implementation/remove.tpp@{implementation/remove.tpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a9e9b6dbf1d7d947dfb7360670d3c7d2e}{BPlusTree<T>::remove}}(\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ node,\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ parent,\ T\ key,\ \textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (node-\/>isLeaf)\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ \{find(node-\/>keys.begin(),\ node-\/>keys.end(),\ key)\};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ node-\/>keys.end())\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ node-\/>keys.erase(it);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (parent\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ index\ >\ 0)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ parent-\/>keys[index\ -\/\ 1]\ =\ node-\/>keys.front();}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node-\/>keys.size()\ <\ minDegree\ -\/\ 1)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (parent\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ +\ 1\ <\ parent-\/>children.size()\ \&\&}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parent-\/>children[index\ +\ 1]-\/>keys.size()\ >=\ minDegree)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_a40b558d42c2d6e1d503d47a1450f647c}{borrowFromNext}}(node,\ parent,\ index);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (index\ >\ 0\ \&\&\ parent-\/>children[index\ -\/\ 1]-\/>keys.size()\ >=\ minDegree)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_a5ba990c4f4345cba6440448f8772fa80}{borrowFromPrev}}(node,\ parent,\ index);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_ac01ba405435a00ac535fe542b859a76b}{merge}}(node,\ parent,\ index);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ childIndex\ =}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ upper\_bound(node-\/>keys.begin(),}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>keys.end(),}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ key)\ -\/\ node-\/>keys.begin();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_a9e9b6dbf1d7d947dfb7360670d3c7d2e}{remove}}(node-\/>children[childIndex],}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ node,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ key,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ childIndex);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{if}\ (node\ ==\ root)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!node-\/>isLeaf\ \&\&\ node-\/>keys.empty())\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ oldRoot\ =\ root;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ root\ =\ root-\/>children[0];}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ oldRoot;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (node-\/>children.size()\ >=\ minDegree)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >\ 0\ \&\&}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ parent-\/>children[index\ -\/\ 1]-\/>children.size()\ >=\ minDegree\ +\ 1)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_a7fd5d8ab340b3418ea0b77cc8cb66847}{borrowInternalFromPrev}}(node,\ parent,\ index);}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (index\ +\ 1\ <\ parent-\/>children.size()\ \&\&}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ parent-\/>children[index\ +\ 1]-\/>children.size()\ >=\ minDegree\ +\ 1)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_ac71ae4bb407e13a6d726f5a73ec6aa23}{borrowInternalFromNext}}(node,\ parent,\ index);}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_a4fcd3aa6d749f8f8ecae0d7a288502cc}{mergeInternal}}(node,\ parent,\ index);}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a5ba990c4f4345cba6440448f8772fa80}{BPlusTree<T>::borrowFromPrev}}(\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ node,\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ parent,\ \textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ prev\ =\ parent-\/>children[index\ -\/\ 1];}
+\DoxyCodeLine{00109\ \ \ \ \ T\ data\ =\ prev-\/>keys.back();}
+\DoxyCodeLine{00110\ \ \ \ \ node-\/>keys.insert(node-\/>keys.begin(),\ data);}
+\DoxyCodeLine{00111\ \ \ \ \ prev-\/>keys.pop\_back();}
+\DoxyCodeLine{00112\ \ \ \ \ parent-\/>keys[index\ -\/\ 1]\ =\ node-\/>keys.front();}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00128\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a40b558d42c2d6e1d503d47a1450f647c}{BPlusTree<T>::borrowFromNext}}(\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ node,\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ parent,\ \textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ next\ =\ parent-\/>children[index\ +\ 1];}
+\DoxyCodeLine{00130\ \ \ \ \ T\ data\ =\ next-\/>keys.front();}
+\DoxyCodeLine{00131\ \ \ \ \ node-\/>keys.push\_back(data);}
+\DoxyCodeLine{00132\ \ \ \ \ next-\/>keys.erase(next-\/>keys.begin());}
+\DoxyCodeLine{00133\ \ \ \ \ parent-\/>keys[index]\ =\ next-\/>keys.front();}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00149\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_ac01ba405435a00ac535fe542b859a76b}{BPlusTree<T>::merge}}(\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ node,\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ parent,\ \textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ +\ 1\ <\ parent-\/>children.size())\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ next\ =\ parent-\/>children[index\ +\ 1];}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ node-\/>keys.insert(}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>keys.end(),}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ next-\/>keys.begin(),}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ next-\/>keys.end()}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ node-\/>next\ =\ next-\/>next;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ parent-\/>keys.erase(}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ parent-\/>keys.begin()\ +\ index}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ parent-\/>children.erase(}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ parent-\/>children.begin()\ +\ index\ +\ 1}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ next;}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (index\ >\ 0)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ prev\ =\ parent-\/>children[index\ -\/\ 1];}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ prev-\/>keys.insert(}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ prev-\/>keys.end(),}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>keys.begin(),}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>keys.end()}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ prev-\/>next\ =\ node-\/>next;}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ parent-\/>keys.erase(}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ parent-\/>keys.begin()\ +\ index\ -\/\ 1}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ parent-\/>children.erase(}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ parent-\/>children.begin()\ +\ index}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ node;}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00209\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a7fd5d8ab340b3418ea0b77cc8cb66847}{BPlusTree<T>::borrowInternalFromPrev}}(\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ node,\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ parent,\ \textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ prev\ =\ parent-\/>children[index\ -\/\ 1];}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ node-\/>keys.insert(node-\/>keys.begin(),\ parent-\/>keys[index\ -\/\ 1]);}
+\DoxyCodeLine{00213\ \ \ \ \ node-\/>children.insert(node-\/>children.begin(),\ prev-\/>children.back());}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ parent-\/>keys[index\ -\/\ 1]\ =\ prev-\/>keys.back();}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ prev-\/>keys.pop\_back();}
+\DoxyCodeLine{00218\ \ \ \ \ prev-\/>children.pop\_back();}
+\DoxyCodeLine{00219\ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00235\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00236\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_ac71ae4bb407e13a6d726f5a73ec6aa23}{BPlusTree<T>::borrowInternalFromNext}}(\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ node,\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ parent,\ \textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ next\ =\ parent-\/>children[index\ +\ 1];}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ node-\/>keys.push\_back(parent-\/>keys[index]);}
+\DoxyCodeLine{00240\ \ \ \ \ node-\/>children.push\_back(next-\/>children.front());}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ parent-\/>keys[index]\ =\ next-\/>keys.front();}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ next-\/>keys.erase(next-\/>keys.begin());}
+\DoxyCodeLine{00245\ \ \ \ \ next-\/>children.erase(next-\/>children.begin());}
+\DoxyCodeLine{00246\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00260\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00261\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a4fcd3aa6d749f8f8ecae0d7a288502cc}{BPlusTree<T>::mergeInternal}}(\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ node,\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ parent,\ \textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ +\ 1\ <\ parent-\/>children.size())\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ next\ =\ parent-\/>children[index\ +\ 1];}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ node-\/>keys.push\_back(parent-\/>keys[index]);}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ node-\/>keys.insert(node-\/>keys.end(),\ next-\/>keys.begin(),\ next-\/>keys.end());}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ node-\/>children.insert(node-\/>children.end(),\ next-\/>children.begin(),\ next-\/>children.end());}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ parent-\/>keys.erase(parent-\/>keys.begin()\ +\ index);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ parent-\/>children.erase(parent-\/>children.begin()\ +\ index\ +\ 1);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ next;}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (index\ >\ 0)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ prev\ =\ parent-\/>children[index\ -\/\ 1];}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ prev-\/>keys.push\_back(parent-\/>keys[index\ -\/\ 1]);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ prev-\/>keys.insert(prev-\/>keys.end(),\ node-\/>keys.begin(),\ node-\/>keys.end());}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ prev-\/>children.insert(prev-\/>children.end(),\ node-\/>children.begin(),\ node-\/>children.end());}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ parent-\/>keys.erase(parent-\/>keys.begin()\ +\ index\ -\/\ 1);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ parent-\/>children.erase(parent-\/>children.begin()\ +\ index);}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ node;}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00296\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00297\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a9e9b6dbf1d7d947dfb7360670d3c7d2e}{BPlusTree<T>::remove}}(T\ key)\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{if}\ (root\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00300\ \ \ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_a9e9b6dbf1d7d947dfb7360670d3c7d2e}{remove}}(root,\ \textcolor{keyword}{nullptr},\ key,\ 0);}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordflow}{if}\ (!root-\/>isLeaf\ \&\&\ root-\/>keys.empty())\ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ oldRoot\ =\ root;}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ root\ =\ root-\/>children[0];}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ oldRoot;}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \}}
+
+\end{DoxyCode}

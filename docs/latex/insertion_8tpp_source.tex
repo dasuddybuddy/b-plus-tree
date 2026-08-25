@@ -1,0 +1,64 @@
+\doxysection{insertion.\+tpp}
+\hypertarget{insertion_8tpp_source}{}\label{insertion_8tpp_source}\index{implementation/insertion.tpp@{implementation/insertion.tpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec}{BPlusTree<T>::splitChild}}(\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ parent,\ \textcolor{keywordtype}{int}\ index,\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ child)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ sibling\ \{\textcolor{keyword}{new}\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}(child-\/>isLeaf)\};}
+\DoxyCodeLine{00019\ \ \ \ \ parent-\/>children.insert(parent-\/>children.begin()\ +\ index\ +\ 1,\ sibling);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ T\ sepKey\ =\ child-\/>keys[minDegree\ -\/\ 1];}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (child-\/>isLeaf)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ sibling-\/>keys.assign(child-\/>keys.begin()\ +\ minDegree\ -\/\ 1,\ child-\/>keys.end());}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ child-\/>keys.resize(minDegree\ -\/\ 1);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ sibling-\/>next\ =\ child-\/>next;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ child-\/>next\ =\ sibling;}
+\DoxyCodeLine{00028\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ sibling-\/>keys.assign(child-\/>keys.begin()\ +\ minDegree,\ child-\/>keys.end());}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ child-\/>keys.resize(minDegree\ -\/\ 1);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ sibling-\/>children.assign(child-\/>children.begin()\ +\ minDegree,\ child-\/>children.end());}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ child-\/>children.resize(minDegree);}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ parent-\/>keys.insert(parent-\/>keys.begin()\ +\ index,\ sepKey);}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_ae90221cfa498f811580bd66d5d3665e1}{BPlusTree<T>::insertNonFull}}(\doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ node,\ T\ key)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (node-\/>isLeaf)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ node-\/>keys.insert(std::upper\_bound(node-\/>keys.begin(),\ node-\/>keys.end(),\ key),\ key);}
+\DoxyCodeLine{00052\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ idx\ \{0\};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (idx\ <\ node-\/>keys.size()\ \&\&\ key\ >=\ node-\/>keys[idx])\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ idx++;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node-\/>children[idx]-\/>keys.size()\ ==\ 2\ *\ minDegree\ -\/\ 1)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec}{splitChild}}(node,\ idx,\ node-\/>children[idx]);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\ >=\ node-\/>keys[idx])\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idx++;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_ae90221cfa498f811580bd66d5d3665e1}{insertNonFull}}(node-\/>children[idx],\ key);}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ }
+\DoxyCodeLine{00079\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_b_plus_tree_a2fd5163751b941ec6c49da287782c3ab}{BPlusTree<T>::insert}}(T\ key)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{if}\ (root\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ root\ =\ \textcolor{keyword}{new}\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ root-\/>keys.push\_back(key);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}\ (root-\/>keys.size()\ ==\ 2*minDegree\ -\/\ 1)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}*\ newRoot\ \{\textcolor{keyword}{new}\ \doxymbox{\hyperlink{struct_b_plus_tree_1_1_node}{Node}}()\};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ newRoot-\/>children.push\_back(root);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_ac693ae459379f293a4b5dd1bbb921fec}{splitChild}}(newRoot,\ 0,\ root);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ root\ =\ newRoot;}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \doxymbox{\hyperlink{class_b_plus_tree_ae90221cfa498f811580bd66d5d3665e1}{insertNonFull}}(root,\ key);}
+\DoxyCodeLine{00092\ \}}
+
+\end{DoxyCode}
