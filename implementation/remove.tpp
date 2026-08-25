@@ -26,7 +26,7 @@
  * @param index used for traversal to find target data
  */
 template <typename T>
-void BPlusTree<T>::remove(Node* node, Node* parent, T key, int index) {
+void BPlusTree<T>::remove(Node*& node, Node*& parent, T key, int index) {
     if (node->isLeaf) {
         auto it {find(node->keys.begin(), node->keys.end(), key)};
         if (it == node->keys.end()) {
@@ -104,7 +104,7 @@ void BPlusTree<T>::remove(Node* node, Node* parent, T key, int index) {
  * @param index index where node is located
  */
 template <typename T>
-void BPlusTree<T>::borrowFromPrev(Node* node, Node* parent, int index) {
+void BPlusTree<T>::borrowFromPrev(Node*& node, Node*& parent, int index) {
     Node* prev = parent->children[index - 1];
     T data = prev->keys.back();
     node->keys.insert(node->keys.begin(), data);
@@ -125,7 +125,7 @@ void BPlusTree<T>::borrowFromPrev(Node* node, Node* parent, int index) {
  * @param index index where node is located
  */
 template <typename T>
-void BPlusTree<T>::borrowFromNext(Node* node, Node* parent, int index) {
+void BPlusTree<T>::borrowFromNext(Node*& node, Node*& parent, int index) {
     Node* next = parent->children[index + 1];
     T data = next->keys.front();
     node->keys.push_back(data);
@@ -146,7 +146,7 @@ void BPlusTree<T>::borrowFromNext(Node* node, Node* parent, int index) {
  * @param index index where node is located
  */
 template <typename T>
-void BPlusTree<T>::merge(Node* node, Node* parent, int index) {
+void BPlusTree<T>::merge(Node*& node, Node*& parent, int index) {
     if (index + 1 < parent->children.size()) {
         Node* next = parent->children[index + 1];
 
@@ -206,7 +206,7 @@ void BPlusTree<T>::merge(Node* node, Node* parent, int index) {
  * @param index index where node is located
  */
 template <typename T>
-void BPlusTree<T>::borrowInternalFromPrev(Node* node, Node* parent, int index) {
+void BPlusTree<T>::borrowInternalFromPrev(Node*& node, Node*& parent, int index) {
     Node* prev = parent->children[index - 1];
 
     node->keys.insert(node->keys.begin(), parent->keys[index - 1]);
@@ -233,7 +233,7 @@ void BPlusTree<T>::borrowInternalFromPrev(Node* node, Node* parent, int index) {
  * @param index index where node is located
  */
 template <typename T>
-void BPlusTree<T>::borrowInternalFromNext(Node* node, Node* parent, int index) {
+void BPlusTree<T>::borrowInternalFromNext(Node*& node, Node*& parent, int index) {
     Node* next = parent->children[index + 1];
 
     node->keys.push_back(parent->keys[index]);
@@ -258,7 +258,7 @@ void BPlusTree<T>::borrowInternalFromNext(Node* node, Node* parent, int index) {
  * @param index index where node is located
  */
 template <typename T>
-void BPlusTree<T>::mergeInternal(Node* node, Node* parent, int index) {
+void BPlusTree<T>::mergeInternal(Node*& node, Node*& parent, int index) {
     if (index + 1 < parent->children.size()) {
         Node* next = parent->children[index + 1];
 

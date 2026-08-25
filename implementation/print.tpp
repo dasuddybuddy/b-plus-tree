@@ -1,5 +1,5 @@
 template <typename T>
-void BPlusTree<T>::printTree(Node* node, int level, bool isLast, std::string prefix) {
+void BPlusTree<T>::printTree(Node*& node, int level, bool isLast, std::string prefix) {
     if (node == nullptr) return;
 
     std::cout << prefix;

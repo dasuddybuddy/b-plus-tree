@@ -32,34 +32,34 @@ private:
     int minDegree;
 
     // Function to split a child node
-    void splitChild(Node* parent, int index, Node* child);
+    void splitChild(Node*& parent, int index, Node*& child);
 
     // Function to insert a key in a non-full node
-    void insertNonFull(Node* node, T key);
+    void insertNonFull(Node*& node, T key);
 
     // Function to remove a key from a node
-    void remove(Node* node, Node* parent, T key, int index);
+    void remove(Node*& node, Node*& parent, T key, int index);
 
     // Function to borrow a key from the previous sibling
-    void borrowFromPrev(Node* node, Node* parent, int index);
+    void borrowFromPrev(Node*& node, Node*& parent, int index);
 
     // Function to borrow a key from the next sibling
-    void borrowFromNext(Node* node, Node* parent, int index);
+    void borrowFromNext(Node*& node, Node*& parent, int index);
 
     // Function to merge two nodes
-    void merge(Node* node, Node* parent, int index);
+    void merge(Node*& node, Node*& parent, int index);
 
     // Function to borrow a key from previous sibling (internal nodes)
-    void borrowInternalFromPrev(Node* node, Node* parent, int index);
+    void borrowInternalFromPrev(Node*& node, Node*& parent, int index);
 
     // Function to borrow a key from next sibling (internal nodes)
-    void borrowInternalFromNext(Node* node, Node* parent, int index);
+    void borrowInternalFromNext(Node*& node, Node*& parent, int index);
 
     // Function to merge two internal nodes
-    void mergeInternal(Node* node, Node* parent, int index);
+    void mergeInternal(Node*& node, Node*& parent, int index);
 
     // Function to print the tree
-    void printTree(Node* node, int level, bool isLast, std::string prefix);
+    void printTree(Node*& node, int level, bool isLast, std::string prefix);
 
 public:
     BPlusTree(int degree): root(nullptr), minDegree(degree){}

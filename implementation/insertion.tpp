@@ -14,7 +14,7 @@
  * @param index index of which data in parent
  */
 template <typename T>
-void BPlusTree<T>::splitChild(Node* parent, int index, Node* child) {
+void BPlusTree<T>::splitChild(Node*& parent, int index, Node*& child) {
     Node* sibling {new Node(child->isLeaf)};
     parent->children.insert(parent->children.begin() + index + 1, sibling);
 
@@ -46,7 +46,7 @@ void BPlusTree<T>::splitChild(Node* parent, int index, Node* child) {
  * @param key data to be added
  */
 template <typename T>
-void BPlusTree<T>::insertNonFull(Node* node, T key) {
+void BPlusTree<T>::insertNonFull(Node*& node, T key) {
     if (node->isLeaf) {
         node->keys.insert(std::upper_bound(node->keys.begin(), node->keys.end(), key), key);
     } else {
