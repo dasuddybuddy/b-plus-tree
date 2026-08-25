@@ -299,7 +299,8 @@ void BPlusTree<T>::remove(T key) {
         return;
     }
 
-    remove(root, nullptr, key, 0);
+    Node* parent = nullptr;
+    remove(root, parent, key, 0);
 
     if (!root->isLeaf && root->keys.empty()) {
         Node* oldRoot = root;
