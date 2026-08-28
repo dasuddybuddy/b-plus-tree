@@ -32,7 +32,7 @@ private:
     int minDegree;
 
     // Function to split a child node
-    void splitChild(Node*& parent, int index, Node*& child);
+    void splitChild(Node*& parent, int index, Node* child);
 
     // Function to insert a key in a non-full node
     void insertNonFull(Node*& node, T key);
@@ -61,8 +61,20 @@ private:
     // Function to print the tree
     void printTree(Node*& node, int level, bool isLast, std::string prefix);
 
+    void deleteTree(Node* node) {
+    if (!node) return;
+    // Recurse into children first (internal nodes only)
+    for (Node* child : node->children) {
+        deleteTree(child);
+    }
+    delete node;
+}
+
 public:
     BPlusTree(int degree): root(nullptr), minDegree(degree){}
+    ~BPlusTree() {
+        deleteTree(root);
+    }
 
     void insert(T key);
     bool search(T key);

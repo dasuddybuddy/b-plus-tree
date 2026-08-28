@@ -14,10 +14,12 @@
  * @param index index of which data in parent
  */
 template <typename T>
-void BPlusTree<T>::splitChild(Node*& parent, int index, Node*& child) {
+void BPlusTree<T>::splitChild(Node*& parent, int index, Node* child) {
     Node* sibling {new Node(child->isLeaf)};
     parent->children.insert(parent->children.begin() + index + 1, sibling);
-
+    if (child == nullptr) {
+        std::cout << "null\n";
+    }
     T sepKey = child->keys[minDegree - 1];
 
     if (child->isLeaf) {
